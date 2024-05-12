@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Roboto;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+.app {
+  height: 100%;
+  padding: 12px;
+  background-color: #EFEFEF;
+}
+
+.app>header {
+  height: 72px;
+  background-color: #FFFFFF;
+  padding: 16px 24px;
+}
+
+.app h1 {
+  font-size: 24px;
+  font-weight: 500;
+  text-align: left;
+  color: #000000D9;
+}
+
+.app section {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.filter-area {
+  width: 465px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  background-color: #FFFFFF;
+}
+
+.filter-area-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.filter-area-content div {
+  height: 160px;
+  background-position: center;
+  background-size: cover;
+}
+
+.filter-area-content p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: left;
+}
+
+.filters {
+  height: 198px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.app .select-filter {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.select-filter>p {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: right;
+}
+
+.select-filter select {
+  width: 285px;
+  padding: 8px 16px;
+  border-radius: 2px;
+  border: 1px solid #D9D9D9;
+  box-shadow: 0px 2px 0px 0px #00000004;
+}
+
+.select-filter input::placeholder {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+}
+
+.select-filter>div {
+  display: flex;
+}
+
+.select-filter>div div {
+  width: 72px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  border: 1px solid #D9D9D9;
+  cursor: pointer;
+}
+
+.select-filter>div div:nth-child(2),
+.select-filter>div div:nth-child(3) {
+  border-radius: 0;
+  border-left: none;
+}
+
+.select-filter>div div p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+}
+
+.active-filter {
+  background-color: #1890FF;
+  border: 1px solid #1890FF;
+  color: #FFFFFF;
+}
+
+.filter-not-found {
+  opacity: 20%;
+  border: none;
+}
+
+.filters>p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+  opacity: 30%;
+  color: #1890FF;
+  cursor: pointer;
+}
+
+.random-recipe {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  opacity: 50%;
+
+}
+
+.random-recipe h5 {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+}
+
+.random-recipe button {
+  padding: 4px 15px;
+  gap: 10px;
+  border-radius: 2px;
+  border: 1px solid #D9D9D9;
+  box-shadow: 0px 2px 0px 0px #00000004;
+  background: none;
+  height: 32px;
+  width: fit-content;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.list-area {
+  width: 1405px;
+  background-color: #FFFFFF80;
+}
+
+.list-area header {
+  height: 60px;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #FFFFFF;
+}
+
+
+.list-area header p {
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+  color: #00000073;
+}
+
+.recipe-list {
+  padding: 12px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.pagination {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.pagination button {
+  width: 32px;
+  height: 32px;
+  padding: 1px 7px;
+  border-radius: 2px;
+  border: 1px solid #D9D9D9;
+  background-color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: center;
+}
+
+.pagination .active {
+  border: 1px solid #1890FF;
+  color: #1890FF;
+}
+
+.pagination .disabled {
+  border: 1px solid #D9D9D9;
+  color: #D9D9D9;
+
+}
