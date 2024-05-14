@@ -117,7 +117,7 @@ function App() {
           </div>
           <div className="random-recipe">
             <h5>А еще можно попробовать на вкус удачу</h5>
-            <Link to={`/recipe/${Math.floor(Math.random() * 50)}`}>
+            <Link to={`/recipes/recipe/${Math.floor(Math.random() * 50)}`}>
               <button>Мне повезёт!</button>
             </Link>
           </div>
@@ -130,7 +130,7 @@ function App() {
           <div className="recipe-list">
           {filteredRecipesData && filteredRecipesData.length > 0 ? (
               filteredRecipesData.map(item => (
-                <Link key={item.id} to={`/recipe/${item.id}`} className="list-item-link">
+                <Link key={item.id} to={`/recipes/recipe/${item.id}`} className="list-item-link">
                   <ListItem 
                     id={item.id}
                     name={item.name}

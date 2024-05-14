@@ -50,7 +50,7 @@ const ListItem = ({ id, name, image, instructions, time, difficulty, cuisine, me
     }
 
     return (
-        <Link to={`/recipe/${id}`}>
+        <Link to={`/recipes/recipe/${id}`}>
             <div className="recipe-list-item">
                 <div className="list-item-title">
                     <h3>{name}</h3>
