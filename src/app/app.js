@@ -25,7 +25,7 @@ function App() {
 
   useEffect(() => {
     filterRecipes();
-  }, [allRecipesData, selectedCuisine, selectedMealType, selectedDifficulty, currentPage]);
+  }, [allRecipesData, filteredRecipesData, selectedCuisine, selectedMealType, selectedDifficulty, currentPage]);
 
 
 
@@ -52,18 +52,31 @@ function App() {
       if (selectedDifficulty !== 'any') {
         filteredRecipes = filteredRecipes.filter(recipe => recipe.difficulty === selectedDifficulty);
       }
+
       let counter = filteredRecipes.length;
       const startIndex = (currentPage - 1) * recipesPerPage;
       const endIndex = startIndex + recipesPerPage;
       const recipesOnCurrentPage = filteredRecipes.slice(startIndex, endIndex);
-      setFilteredRecipesData(recipesOnCurrentPage);
+
+      if (recipesOnCurrentPage.length === 0 && currentPage > 1) {
+        setCurrentPage(1);  
+      } else {
+        setFilteredRecipesData(recipesOnCurrentPage);
+      }
 
       const newTotalPages = Math.ceil(filteredRecipes.length / recipesPerPage);
-      setTotalPages(newTotalPages);
-      setCurrentPage(prevPage => Math.min(prevPage, newTotalPages));
+      setTotalPages(newTotalPages || 1);  
       setFilteredRecipesLength(counter);
     }
   }
+
+  function resetFilters() {
+    setSelectedCuisine('all');
+    setSelectedMealType('all');
+    setSelectedDifficulty('any');
+    setCurrentPage(1);
+  }
+
 
   return (
     <div className="app">
@@ -102,12 +115,12 @@ function App() {
                 <div className="filter-not-found"><p>Высокая</p></div>
               </div>
             </div>
-            <p>Сбросить все фильтры</p>
+            <p onClick={resetFilters}>Сбросить все фильтры</p>
           </div>
           <div className="random-recipe">
             <h5>А еще можно попробовать на вкус удачу</h5>
             <Link to={`/recipe/${Math.floor(Math.random() * 50)}`}>
-            <button>Мне повезёт!</button>
+              <button>Мне повезёт!</button>
             </Link>
           </div>
         </div>
@@ -117,18 +130,22 @@ function App() {
             <p>{filteredRecipesLength}</p>
           </header>
           <div className="recipe-list">
-            {filteredRecipesData && filteredRecipesData.map(item =>
-              <Link key={item.id} to={`/recipe/${item.id}`} className="list-item-link">
-                <ListItem 
-                  id={item.id}
-                  name={item.name}
-                  image={item.image}
-                  instructions={item.instructions}
-                  time={item.cookTimeMinutes + item.prepTimeMinutes}
-                  difficulty={item.difficulty}
-                  cuisine={item.cuisine}
-                  mealType={item.mealType} />
-              </Link>
+          {filteredRecipesData && filteredRecipesData.length > 0 ? (
+              filteredRecipesData.map(item => (
+                <Link key={item.id} to={`/recipe/${item.id}`} className="list-item-link">
+                  <ListItem 
+                    id={item.id}
+                    name={item.name}
+                    image={item.image}
+                    instructions={item.instructions}
+                    time={item.cookTimeMinutes + item.prepTimeMinutes}
+                    difficulty={item.difficulty}
+                    cuisine={item.cuisine}
+                    mealType={item.mealType} />
+                </Link>
+              ))
+            ) : (
+              <p>Нет рецептов, соответствующих выбранным фильтрам.</p>
             )}
           </div>
           <div className="pagination">
