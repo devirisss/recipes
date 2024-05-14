@@ -25,14 +25,13 @@ function App() {
 
   useEffect(() => {
     filterRecipes();
-  }, [allRecipesData, filteredRecipesData, selectedCuisine, selectedMealType, selectedDifficulty, currentPage]);
+  }, [allRecipesData, selectedCuisine, selectedMealType, selectedDifficulty, currentPage]);
 
 
 
   async function getAllRecipes() {
     const response = await fetch('https://dummyjson.com/recipes?total=100&skip=0&limit=100');
     const data = await response.json();
-    console.log(data.recipes);
     setAllRecipesData(data.recipes);
     const uniqueCuisines = [...new Set(data.recipes.map(recipe => recipe.cuisine))];
     const uniqueMealTypes = [...new Set(data.recipes.map(recipe => recipe.mealType).flat())];
@@ -76,7 +75,6 @@ function App() {
     setSelectedDifficulty('any');
     setCurrentPage(1);
   }
-
 
   return (
     <div className="app">
@@ -149,11 +147,11 @@ function App() {
             )}
           </div>
           <div className="pagination">
-            <button onClick={() => setCurrentPage(currentPage - 1)} className={currentPage === 1 ? 'disabled' : ''}>{'<'}</button>
+            <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1} className={currentPage === 1 ? 'disabled' : ''}>{'<'}</button>
             {Array.from({ length: totalPages }).map((_, index) => (
               <button key={index} onClick={() => setCurrentPage(index + 1)} className={currentPage === index + 1 ? 'active' : ''}>{index + 1}</button>
             ))}
-            <button onClick={() => setCurrentPage(currentPage + 1)} className={currentPage === totalPages ? 'disabled' : ''}>{'>'}</button>
+            <button onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === totalPages} className={currentPage === totalPages ? 'disabled' : ''}>{'>'}</button>
           </div>
         </div>
       </section>
